@@ -1,0 +1,311 @@
+@media screen and (min-width: 1600px) {
+.container-fluid{
+	max-width: 1620px;
+	width: 100%;
+}
+}
+
+@media screen and (min-width: 1200px) {
+.container{
+	max-width: 1200px;
+	width: 100%;
+}
+
+}
+@media screen and (max-width: 1600px) {
+.product-slide-sec .slick-prev {
+    left: 0;
+}
+.product-slide-sec .slick-next {
+    right: 0;
+}
+.dropdown-toggle, .nav-links a {
+    font-size: 16px;
+    line-height: 16px;
+    margin-right: 15px;
+}
+}
+@media screen and (max-width: 1400px) {
+	.dropdown-toggle, .nav-links a {
+    font-size: 14px;
+    line-height: 16px;
+    margin-right: 15px;
+}
+	.contact-enqui h6 {
+    font-size: 20px;
+    line-height: 23px;
+}
+.enquiery-logo i {
+    font-size: 20px;
+    padding: 10px;
+    margin-right: 10px;
+}
+.search-bar .form-control {
+    font-size: 16px;
+    line-height: 16px;
+    padding: 12px 20px;
+}
+.product-abt {
+    min-height: 230px;
+}
+.product-btn a {
+    width: 100%;
+    height: 45px;
+    font-size: 16px;
+    line-height: 16px;
+}
+.product-box.new-pdcts .product-abt {
+    min-height: 430px;
+}
+.class-to-style.slick-arrow {
+    position: absolute;
+    top: -90px;
+    right: 15%;
+}	
+}
+@media screen and (max-width: 1200px) {
+.banner-pdct {
+    text-align: center;
+    max-width: 200px;
+    margin: auto;
+}
+.dropdown-toggle, .nav-links a {
+    font-size: 12px;
+    line-height: 16px;
+    margin-right: 7px;
+}
+.contact-enqui h6 {
+    font-size: 16px;
+    line-height: 20px;
+}
+.product-box {
+    margin-bottom: 30px;
+    height: auto;
+}
+.product-box.new-pdcts .product-abt {
+    min-height: 372px;
+}
+.product-abt {
+    min-height: 150px;
+}
+.custom-products-sec .row.lwr {
+    margin-top: 0px;
+}
+.product-box{
+	margin: 0;
+	margin-bottom: 30px;
+}
+.contact-header .row .col-lg-5 .col-lg-6 {
+    padding: 0;
+    margin-right: 10px;
+}
+.product-box.new-pdcts {
+    margin: 0 15px;
+}
+
+}
+@media screen and (max-width: 992px) {
+.head-links-dsktp {
+    display: none;
+}
+.header-content {
+    justify-content: flex-end;
+}
+.enquiery-number {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+.contact-header .row .col-lg-5 {
+    display: block;
+}
+.product-box.new-pdcts .product-abt {
+    min-height: 479px;
+}
+.banner-products,
+ .custom-products-sec ,
+ .product-slide-sec,
+ footer.site-footer {
+    padding: 50px 0;
+}
+
+}
+@media screen and (max-width: 767px) {
+.banner-pdct p {
+    font-size: 16px;
+    line-height: 16px;
+}
+.product-box {
+    height: auto;
+    margin: 0;
+    margin-bottom: 20px;
+}
+.product-btn a {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    line-height: 14px;
+}
+.contact-header .row .col-lg-5 .col-lg-6.col-md-12 {
+    padding: 0;
+    margin-right: 0px;
+}
+.navbar-toggler {
+    padding: 10px;
+}
+.class-to-style.slick-arrow {
+    right: 25%;
+}
+.class-to-style.slick-arrow span {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+}
+.custom-products-sec h3 , .product-slide-sec h3 {
+    font-size: 26px;
+    line-height: 30px;
+    margin-bottom: 40px;
+}
+.class-to-style.slick-arrow {
+    top: -80px;
+}
+.banner-pdct {
+    max-width: 160px;
+}
+.banner-pdct p {
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.product-box.new-pdcts .product-img {
+    margin-bottom: 30px;
+    max-width: 300px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.product-box h6 {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 5px;
+}
+
+body {
+    font-size: 13px;
+    line-height: 18px;
+}
+.custom-products-sec .row.lwr {
+    margin-top: 0px;
+}
+
+.product-box.prodct-dtl .product-img {
+    max-width: 320px;
+    width: 100%;
+    margin: auto;
+}
+.product-box.new-pdcts .product-abt {
+    min-height: 384px;
+}
+}
+
+@media screen and (max-width: 575px) {
+	.search-bar .form-control {
+    font-size: 12px;
+    line-height: 16px;
+    padding: 10px 5px;
+}
+.enquiery-logo i {
+    font-size: 12px;
+    padding: 5px;
+    margin-right: 5px;
+}
+.contact-header .row .col-lg-5 {
+    display: flex;
+}
+.enquiery-number .contact-enqui p {
+    font-size: 11px;
+    margin-bottom: 0;
+}
+.contact-enqui h6 {
+    font-size: 14px;
+    line-height: 16px;
+}
+.navbar-toggler-icon {
+    width: 20px;
+    height: 20px;
+}
+.navbar-toggler {
+    padding: 5px;
+}
+.header-social-links a{
+	margin-right: 5px;
+}
+.header-account-pf a {
+    font-size: 10px;
+    line-height: 20px;
+    padding: 0 5px;
+}
+.header-social-links a {
+    font-size: 12px;
+    line-height: 18px;
+    margin-right: 5px;
+}
+.header-account-pf a i {
+    margin-right: 1px;
+}
+.banner-sec .slick-dots li button:before {
+    font-size: 12px;
+    color: #fff;
+}
+.banner-sec .slick-dots {
+    bottom: 5px;
+}
+.banner-sec .slick-dots li{
+	margin: 0;
+}
+.banner-pdct p {
+    font-size: 12px;
+    line-height: 16px;
+}
+.banner-products,
+ .custom-products-sec ,
+ .product-slide-sec,
+ footer.site-footer {
+    padding: 30px 0;
+}
+.custom-products-sec h3, .product-slide-sec h3 {
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 30px;
+}
+.class-to-style.slick-arrow span {
+    width: 36px;
+    height: 38px;
+    font-size: 14px;
+}
+.class-to-style.slick-arrow {
+    top: -60px;
+}
+
+.product-btn a {
+    width: 100%;
+    height: 35px;
+    font-size: 13px;
+    line-height: 14px;
+}
+.product-box .product-img {
+    margin-bottom: 20px;
+}
+.site-footer h6.ftr-hdd {
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: 20px;
+}
+.product-box.new-pdcts .product-abt {
+    min-height: 418px;
+}
+}
+@media screen and (max-width: 479px) {
+    .product-box.new-pdcts .product-abt {
+        min-height: auto;
+    }
+}
