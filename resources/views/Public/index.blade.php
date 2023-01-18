@@ -11,14 +11,15 @@
    @include('Public.Header')
 
    @yield('allcategory')
-    @yield('banner')
-    @yield('banner-products')
-         @yield('product')
-    @yield('customizable-product')
-    @yield('coustomize')
-    @yield('newproducts')
-    @yield('my_account')
-    @yield('cart')
+   @yield('banner')
+   @yield('banner-products')
+   @yield('product')
+   @yield('customizable-product')
+   @yield('coustomize')
+   @yield('newproducts')
+   @yield('my_account')
+   @yield('cart')
+   @yield('SearchProduct')
    @include('Public.Footer')
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
@@ -41,8 +42,9 @@
                   'quantity': quantity,
                   '_token': token
                },
-               success: function(data) {
-                  if (data.status =='success') {}}
+               success: function(response) {
+                  window.location.reload();
+               },
             });
          });
       });
@@ -67,5 +69,41 @@
             }); 
          });
       });
+   </script>
+   <!-- update cart script -->
+   <script>
+      $(".cart_update").change(function (e) {
+        e.preventDefault();
+  
+        var ele = $(this);
+        var quantity = ele.val();
+        var id = ele.attr('data-id');
+        var token = $("meta[name='csrf-token']").attr("content");
+         // alert(id);
+        $.ajax({
+            url: '/cart/update-cart/',
+            method: "GET",
+            data: {
+                _token: token, 
+                id: id, 
+                quantity: quantity,
+            },
+            success: function (response) {
+               window.location.reload();
+            }
+        });
+    });
+   </script>
+
+   <!-- Script for customize products clip art -->
+   <script>
+      $(document).ready(function() {
+         $('.list_craft').on('click', function(e) {
+            e.preventDefault();
+            var id = $(this).attr('id');
+            // alert(id);
+            $('#craft_id').val(id);
+         });
+         });
    </script>
 </html>

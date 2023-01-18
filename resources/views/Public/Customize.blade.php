@@ -46,9 +46,9 @@
                             <div class="form-row row">
                                 <div class="form-group col-md-12">
                                     <label>Quantity</label>
-                                    <select class="custom form_control">
+                                    <select class="custom form_control" name='cutomize_qty'>
                                     @foreach ($PriceType as $Ptype )
-                                        <option value="{{$Ptype->id}}">{{$Ptype->bundel_quantity}} ($ <?php echo $Ptype->bundel_quantity/$Ptype->bundel_price; ?> ea) ${{$Ptype->bundel_price}}.00</option>
+                                        <option  value="{{$Ptype->id}}">{{$Ptype->bundel_quantity}} ($ <?php echo $Ptype->bundel_quantity/$Ptype->bundel_price; ?> ea) ${{$Ptype->bundel_price}}.00</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -185,7 +185,7 @@
                             </div>
                             <div class="form-btn">
                                 <!-- <a href=""> ADD TO CART</a> -->
-                                <button type="submit" class='btn btn-outline-success'>SUBMIT</button>
+                                <button type="submit" class='btna'>SUBMIT</button>
                             </div>
                         </div>
                     </div>

@@ -411,6 +411,27 @@
      background: #fff;
      border: 1px solid #82a12a;
 }
+.form-btn .btna{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0px;
+    background: #82A12A;
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+ }
+ .form-btn .btna:hover{
+      color: #82A12A;
+      background: #fff;
+      border: 1px solid #82a12a;
+ }
 .acc-box p{
     font-family: 'Proxima Nova';
     font-style: normal;

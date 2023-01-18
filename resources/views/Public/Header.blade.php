@@ -12,12 +12,12 @@
                @if (Auth::guest())
                <a href="/my_account"><i class="fa-regular fa-user"></i> My Account</a>
                   @else
-                     {{ Auth::user()->name }}
-                     <a href="/logout"><i class="fa-regular fa-user"></i> Logout</a>
+                     
+                     <a href="/logout"><i class="fa-regular fa-user"></i> Logout {{Auth::user()->fname}}</a>
                   @endif
                   <!-- <a href="my_account"><i class="fa-regular fa-user"></i> My Account</a> -->
                   <a href="#"><i class="fa-regular fa-heart"></i> My Wishlist</a>
-                  <a href="/cart"><i class="fa-solid fa-bag-shopping"></i><span class='cart_val'>{{ count((array) session('cart')) ?? '' }}</span>items</a>
+                  <a href="/cart"><i class="fa-solid fa-bag-shopping"></i><span id='myDiv' class='cart_val'>{{ count((array) session('cart')) ?? '' }}</span>items</a>
                </div>
             </div>
          </div>
@@ -31,15 +31,19 @@
                         <a href="/home" class="banner-lgo"><img src="/images/logo.png"></a>
                      </div>
                   </div>
-                  <div class=" col-lg-6 col-md-6 col-sm-5 col-9">
+                  <form action="/searchproducts" method="POST"  style='width: 50%;'>
+                  <div class=" col-lg-6 col-md-6 col-sm-5 col-9" >
                      <div class="search-bar">
                         <div class="input-group">
-                           <input type="text" class="form-control" placeholder="Search entire store here...">
-                           <div class="input-group-append"><button class="btn btn-primary"><i
+                           @csrf
+                           <input type="text" name='searchdata' class="form-control" placeholder="Search entire store here..." required>
+                           <div class="input-group-append"><button type="submit" class="btn btn-primary"><i
                                     class="fas fa-search"></i></button></div>
+                           
                         </div>
                      </div>
                   </div>
+                  </form>
                   <div class="col-lg-5 col-md-4 col-sm-5 col-12">
                      <div class="col-lg-6 col-md-12">
                         <a href="tel:1-800-341-0079">
@@ -92,13 +96,12 @@
                      @if (!empty($cat))
                      @foreach ($catWithId as $c => $p)
                         @foreach ($p as $category => $d )
-                        <li id=''  class="nav-item main-menu-item flyout-down has_sub_menu">
+                        <li class="nav-item main-menu-item flyout-down has_sub_menu">
                            <a class="nav-link"  id='cat_id' href="/categories/{{$category}}">{{$category ?? ''}}</a>
                            <div class="submenu"> 
-                              <ul value=''>
-                                 
-                                 @foreach ($d as $products )
-                                 <li class="nav-item" value=""><a class="nav-link" href="#">{{$products ?? ''}}</a></li>  
+                              <ul>  
+                                 @foreach ($d as $productsid=>$productname )
+                                 <li class="nav-item" value=""><a class="nav-link" href="/products/{{$productsid ?? ''}}">{{$productname ?? ''}}</a></li>  
                                  @endforeach                                 
                               </ul>
                            </div>

@@ -55,10 +55,6 @@
                             <a href="/admin/products">
                                 <i class="fas fa-table"></i>Products</a>
                         </li>
-                        <li class="{{ (request()->segment(2) == 'Pricetype') ? 'active' : '' }}">
-                            <a href="/admin/Pricetype">
-                                <i class="fa fa-usd"></i>Price Type</a>
-                        </li>
                     </ul>
                 </nav>
             </div>

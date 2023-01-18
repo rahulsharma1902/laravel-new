@@ -55,7 +55,7 @@
             <?php foreach($allproducts as $product) {?>
             <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-6">
                <div class="banner-pdct">
-                  <a href="/products/{{$product->id}}"><img src="products_images/<?php echo $product->image; ?>" class="img-fluid"></a>
+                  <a href="/products/{{$product->slug}}"><img src="products_images/<?php echo $product->image; ?>" class="img-fluid"></a>
                   <p><?php echo $product->productname; ?></p>
                </div>
             </div>
@@ -81,7 +81,7 @@
                      <p><?php echo $Cp->description ?></p>
                   </div>
                   <div class="product-btn cstm-bt">
-                     <a href="/customize/{{$Cp->id}}">Customize It</a>
+                     <a href="/customize/{{$Cp->slug}}">Customize It</a>
                   </div>
                   <div class="product-btn cart-bt">
                      <a class='addtocart' data-product-id='{{$Cp->id}}' href="/cart/add/{{$Cp->id}}">Add to Cart</a>

@@ -17,42 +17,49 @@ class Allproducts extends Controller
         $product = products::find($id);
         foreach($cat as $c){
             $product_id = null;
+            $product_productname = null;
             $cat_id = $c->id;
             $data = \DB::table('products')->where('category',$cat_id)
             ->orWhere('category','like', $cat_id.'%')
             ->orWhere('category','like','%'.$cat_id.'%')
-            ->orwhere('category','like','%'.$cat_id)->get();     
-            foreach($data as $d){    
-                // echo $d->id;
-                $product_id[] =  $d->productname;    
+            ->orwhere('category','like','%'.$cat_id)->get();
+            foreach($data as $d){            
+                $product_id[] =  $d->slug;
+                $product_productname[] =  $d->productname;
+                
             }
-            // $catWithId[] = array($c->category => $product_id);
-            $catWithId[] = array($c->category => $product_id);        
-            
+            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
         }
         return view('Public.home',compact('allproducts','cat','product','catWithId'));
         // print_r($allproducts);        
     }
     public function getsingleproduct($id){
+        // print_r($id);
         $cat = category::all();
         $allproducts = products::all();
-        $product = products::find($id);
+        // $product = products::find($id);
+        $product = products::where('slug',$id)->first();
         foreach($cat as $c){
             $product_id = null;
-            $id = $c->id;
-            $data = \DB::table('products')->where('category',$id)
-            ->orWhere('category','like', $id.'%')
-            ->orWhere('category','like','%'.$id.'%')
-            ->orwhere('category','like','%'.$id)->get();     
-            foreach($data as $d){    
-                // echo $d->id;
-                $product_id[] =  $d->productname;    
+            $product_productname = null;
+            $cat_id = $c->id;
+            $data = \DB::table('products')->where('category',$cat_id)
+            ->orWhere('category','like', $cat_id.'%')
+            ->orWhere('category','like','%'.$cat_id.'%')
+            ->orwhere('category','like','%'.$cat_id)->get();
+            foreach($data as $d){            
+                $product_id[] =  $d->slug;
+                $product_productname[] =  $d->productname;
+                
             }
-            // $catWithId[] = array($c->category => $product_id);
-            $catWithId[] = array($c->category => $product_id);        
-            
+            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
         }
-        return view('Public.Product',compact('cat','allproducts','product','catWithId'));
+        // print_r($product->category);
+        $relatedProducts = \DB::table('products')->where('category',$product->category)->orWhere('category','like', $cat_id.'%')
+        ->orWhere('category','like','%'.$product->category.'%')
+        ->orwhere('category','like','%'.$product->category)->take(4)->get();
+        // print_r($relatedProducts);
+        return view('Public.Product',compact('cat','allproducts','product','catWithId','relatedProducts'));
 
         // print_r($product->image);
     }
@@ -68,16 +75,18 @@ class Allproducts extends Controller
         $cat = category::all();
         foreach($cat as $c){
             $product_id = null;
+            $product_productname = null;
             $cat_id = $c->id;
             $data = \DB::table('products')->where('category',$cat_id)
             ->orWhere('category','like', $cat_id.'%')
             ->orWhere('category','like','%'.$cat_id.'%')
-            ->orwhere('category','like','%'.$cat_id)->get();     
-            foreach($data as $d){    
-                // echo $d->id;
-                $product_id[] =  $d->productname;    
+            ->orwhere('category','like','%'.$cat_id)->get();
+            foreach($data as $d){            
+                $product_id[] =  $d->slug;
+                $product_productname[] =  $d->productname;
+                
             }
-            $catWithId[] = array($c->category => $product_id);        
+            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
         }
         $id = Category::where('category', $id)->get('id');
         foreach($id as $c_id){

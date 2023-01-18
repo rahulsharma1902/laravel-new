@@ -8,7 +8,7 @@ use App\Models\User;
 use Session;
 use App\Models\category;
 use App\Models\products;
-
+use App\Models\product_category;
 use Illuminate\Support\Facades\Auth;
 class MainController extends Controller
 {
@@ -17,16 +17,18 @@ class MainController extends Controller
         $allproducts = products::all();
         foreach($cat as $c){
             $product_id = null;
+            $product_productname = null;
             $cat_id = $c->id;
             $data = \DB::table('products')->where('category',$cat_id)
             ->orWhere('category','like', $cat_id.'%')
             ->orWhere('category','like','%'.$cat_id.'%')
-            ->orwhere('category','like','%'.$cat_id)->get();     
-            foreach($data as $d){    
-                // echo $d->id;
-                $product_id[] =  $d->productname;    
+            ->orwhere('category','like','%'.$cat_id)->get();
+            foreach($data as $d){            
+                $product_id[] =  $d->slug;
+                $product_productname[] =  $d->productname;
+                
             }
-            $catWithId[] = array($c->category => $product_id);        
+            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
         }
     return view('/',compact('cat','allproducts','catWithId'));
     }
@@ -84,18 +86,18 @@ public function home(){
     $newProducts = products::orderBy('created_at','desc')->get();
     foreach($cat as $c){
         $product_id = null;
+        $product_productname = null;
         $cat_id = $c->id;
         $data = \DB::table('products')->where('category',$cat_id)
         ->orWhere('category','like', $cat_id.'%')
         ->orWhere('category','like','%'.$cat_id.'%')
-        ->orwhere('category','like','%'.$cat_id)->get();     
-        foreach($data as $d){    
-            // echo $d->id;
-            $product_id[] =  $d->productname;    
+        ->orwhere('category','like','%'.$cat_id)->get();
+        foreach($data as $d){            
+            $product_id[] =  $d->slug;
+            $product_productname[] =  $d->productname;
+            
         }
-        // $catWithId[] = array($c->category => $product_id);
-        $catWithId[] = array($c->category => $product_id);        
-        
+        $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
     }
     return view('Public.home',compact('cat','allproducts','Cproduct','newProducts','catWithId'));
 }
@@ -105,55 +107,79 @@ public function my_account(){
     $Cproduct = products::where('type', '=', 1)->get(); // Where query 
     foreach($cat as $c){
         $product_id = null;
+        $product_productname = null;
         $cat_id = $c->id;
         $data = \DB::table('products')->where('category',$cat_id)
         ->orWhere('category','like', $cat_id.'%')
         ->orWhere('category','like','%'.$cat_id.'%')
-        ->orwhere('category','like','%'.$cat_id)->get();     
-        foreach($data as $d){    
-            // echo $d->id;
-            $product_id[] =  $d->productname;    
+        ->orwhere('category','like','%'.$cat_id)->get();
+        foreach($data as $d){            
+            $product_id[] =  $d->slug;
+            $product_productname[] =  $d->productname;
+            
         }
-        $catWithId[] = array($c->category => $product_id);        
+        $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
     }
     return view('my_account',compact('cat','allproducts','Cproduct','catWithId'));
 }
 
 
-public function trycode(){
-    $cat = category::all();
-    // print_r($cat);
+// public function trycode(){
+//     $cat = category::all();
+//     // print_r($cat);
     
-    // $catWithId = '';
-    foreach($cat as $c){
-        $product_id = null;
-        $product_productname = null;
-        $cat_id = $c->id;
-    //   echo $c->category;
-        $data = \DB::table('products')->where('category',$cat_id)
-        ->orWhere('category','like', $cat_id.'%')
-        ->orWhere('category','like','%'.$cat_id.'%')
-        ->orwhere('category','like','%'.$cat_id)->get();
-        // dd($products->category);
-        // print_r($data);
-        // echo "<br>";
+//     // $catWithId = '';
+//     foreach($cat as $c){
+//         $product_id = null;
+//         $product_productname = null;
+//         $cat_id = $c->id;
+//     //   echo $c->category;
+//         $data = \DB::table('products')->where('category',$cat_id)
+//         ->orWhere('category','like', $cat_id.'%')
+//         ->orWhere('category','like','%'.$cat_id.'%')
+//         ->orwhere('category','like','%'.$cat_id)->get();
+//         // dd($products->category);
+//         // print_r($data);
+//         // echo "<br>";
         
-        foreach($data as $d){
+//         foreach($data as $d){
             
-            // echo $d->id;
-            $product_id[] =  $d->id;
-            $product_productname[] =  $d->productname;
+//             // echo $d->slug;
+//             $product_id[] =  $d->slug;
+//             $product_productname[] =  $d->productname;
             
-        }
-        // dd($product_id);
-        $catWithId[] = array($c->category => array_combine($product_id,$product_productname));        
-        // echo "<br>";
+//         }
+//         // dd($product_id);
+//         $catWithId[] = array($c->category => array_combine($product_id,$product_productname));        
+//         // echo "<br>";
         
-    }
-    dd($catWithId);
-    // die();
-    }
+//     }
+//     foreach($catWithId as $c=>$p){
 
+//         foreach($p as $k=>$v){
+//             print_r($k);
 
+//             echo '='; 
+//             foreach($v as $kk=>$vv){
+//                 echo $kk;
+//                 echo $vv;
+//                 echo '<br>';
+
+//             }
+//         }
+//     }
+
+//     dd($catWithId);
+//     // die();
+//     }
+
+public function trycode(){
+    echo 'product_category';
+    // $pc = products::find(7)->productss;
+    $pc = category::with('parentcategory')->get();
+echo'<pre>';
+    print_r($pc);
+    echo '</pre>';
+}
 
 }

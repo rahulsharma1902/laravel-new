@@ -10,6 +10,7 @@ use App\Http\Controllers\Public\Customized;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UploadPricetype;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\SearchProduct;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,11 +22,6 @@ use App\Http\Controllers\CartController;
 |
 */
 
-// Route::view('/',[MainController::class, 'main']);
-// Route::get('/', function (){
-//     return view('Public.index');
-// });
-// Route::view('/home','Public.home');
 Route::get('/my_account',[MainController::class, 'my_account']);
 Route::get('/home',[MainController::class, 'home'])->name('home');
 Route::get('/',[MainController::class, 'home']);
@@ -87,3 +83,8 @@ Route::get('/public/header/products',[MainController::class, 'headerProducts']);
 Route::get('/cart',[CartController::class, 'index']);
 Route::get('/cart/add/{id}',[CartController::class, 'add']);
 Route::get('/cart/remove/',[CartController::class,'remove']);
+Route::get('/cart/update-cart/', [CartController::class, 'update'])->name('update_cart');
+
+
+// search route
+Route::POST('/searchproducts',[SearchProduct::class, 'index']);

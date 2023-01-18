@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class category extends Model
 {
     use HasFactory;
-
+    public function parentcategory(){
+        return $this->hasOne(category::class,'id','parent_id');
+    }
 }

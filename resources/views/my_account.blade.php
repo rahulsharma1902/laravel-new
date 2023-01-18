@@ -60,7 +60,7 @@
                                 <p>Forgot Your Password?</p>
                                 <div class="form-btn">
                                     <!-- <a href="">LOGIN</a> -->
-                                    <button class="btn btn-outline-warning btn-large" type="submit">Login</button>
+                                    <button class="btna" type="submit">Login</button>
                                 </div>
                             </form>
                             <!-- lOGIN FORM END HERE -->
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="form-btn">
                                     <!-- <a href="">Register</a> -->
-                                    <button class="btn btn-outline-warning btn-large" type="submit">REGISTER</button>
+                                    <button class="btna" type="submit">REGISTER</button>
                                 </div>
                             </form>
                             <!-- Register Form End here -->

@@ -2,6 +2,30 @@
 @section('product')
 
 <section class="jumbo-sec">
+@if ($errors->any())
+                                    @foreach ($errors->all() as $error)
+                                        <div class="alert alert-danger mt-2" id="success-alert">
+                                        
+                                            <button type="button" class="close" data-dismiss="alert">x</button>
+                                        <strong>Error!</strong>{{ $error }}
+                                            
+                                        </div>
+                                        @endforeach
+                                    @endif
+                                    @if ($message = Session::get('success'))
+                                        <div class="alert alert-success  mt-2" id="success-alert">
+                                            <button type="button" class="close" data-dismiss="alert">x</button>
+                                        <strong>Success!</strong>
+                                            {{$message}}
+                                        </div>
+                                        @endif
+                                        @if ($message = Session::get('error'))
+                                        <div class="alert alert-danger mt-2" id="danger-alert">
+                                            <button type="button" class="close" data-dismiss="alert">x</button>
+                                        <strong>Error!</strong>
+                                            {{$message}}
+                                        </div>
+                                        @endif
         <div class="container">
             <div class="row">
               <div class="col-md-6">
@@ -55,5 +79,37 @@
             </div>
         </div>
     </section>
-    
+    <!-- Retaiteblr products -->
+   <div class="container">
+            <div class="product-slide-head">
+               <h3>Related Products</h3>
+            </div>
+    <div class="row">
+        @if ($relatedProducts)
+            @foreach ($relatedProducts as $relatedProduct)
+        <div class="col-lg-3">
+        <div class="auto-des">
+                  <div class="product-box prodct-dtl">
+                     <div class="product-img">
+                        <img src="../products_images/{{$relatedProduct->image}}" class="img-fluid">
+                     </div>
+                     <div class="product-abt">
+                     <h6>{{$relatedProduct->productname}}</h6>
+                     <p><?php echo $relatedProduct->description; ?></p>
+                     <div class="product-size-price">
+                        <p>List Price:<span>${{$relatedProduct->price}}</span> </p>
+                     </div>
+                     </div>
+                     <div class="product-btn">
+                     <a class='addtocart' data-product-id='{{$relatedProduct->id}}' href="/cart/add/{{$relatedProduct->id}}">ADD TO CART </a>
+                     </div>
+                  </div>
+               </div> 
+        </div> 
+        @endforeach                  
+        @else
+            <p>No Product Matched!</p>
+        @endif
+    </div>
+   </div>
 @endsection

@@ -7,16 +7,16 @@
                      <h6 class="ftr-hdd">Navigation</h6>
                      <ul>
                         <li>
-                           <a href="">Home</a>
+                           <a href="/home">Home</a>
                         </li>
                         <li>
                            <a href="">About Us</a>
                         </li>
                         <li>
-                           <a href="">Register</a>
+                           <a href="/my_account">Register</a>
                         </li>
                         <li>
-                           <a href="">Sign In</a>
+                           <a href="/my_account">Sign In</a>
                         </li>
                         <li>
                            <a href="">Privacy Policy</a>
@@ -49,81 +49,31 @@
                   <div class="ftr-menu">
                      <h6 class="ftr-hdd">Products</h6>
                      <ul>
+                        @if ($allproducts)
+                  
+                        @foreach ($allproducts as $all)
                         <li>
-                           <a href="">Ice Cream Sticks</a>
+                           <a href="/products/{{$all->id}}">{{$all->productname}}</a>
                         </li>
-                        <li>
-                           <a href="">Ice Cream Spoons</a>
-                        </li>
-                        <li>
-                           <a href="">Compostable Wooden Cutlery</a>
-                        </li>
-                        <li>
-                           <a href="">Coffee Stirrers</a>
-                        </li>
-                        <li>
-                           <a href="">Candy Apple Sticks</a>
-                        </li>
-                        <li>
-                           <a href="">Corn Dog Sticks</a>
-                        </li>
-                        <li>
-                           <a href="">Potato Sticks</a>
-                        </li>
-                        <li>
-                           <a href="">Thin Meat/Fruit Skewers</a>
-                        </li>
-                        <li>
-                           <a href="">Concession Supplies</a>
-                        </li>
-                        <li>
-                           <a href="">Lolli and Cake Dowels</a>
-                        </li>
-                        <li>
-                           <a href="">Spa Line </a>
-                        </li>
-                        <li>
-                           <a href="">Medical Line</a>
-                        </li>
+                        @endforeach
+                
+                                
+                        @endif
                      </ul>
                   </div>
                </div>
                <div class="col-lg-2 col-md-6 col-sm-6 col-6">
                   <div class="ftr-menu">
+                  <h6 class="ftr-hdd">Categorys</h6>
                      <ul>
-                        <li>
-                           <a href="">Craft Sticks</a>
+                        @if ($cat)
+                           @foreach ($cat as $c)
+                           <li>
+                           <a href="/categories/{{$c->category}}">{{$c->category}}</a>
                         </li>
-                        <li>
-                           <a href="">Fan Handles</a>
-                        </li>
-                        <li>
-                           <a href="">Paint Paddle Sticks</a>
-                        </li>
-                        <li>
-                           <a href="">Specialty Items</a>
-                        </li>
-                        <li>
-                           <a href="">Straw Line</a>
-                        </li>
-                        <li>
-                           <a href="">Confection Products</a>
-                        </li>
-                        <li>
-                           <a href="">Custom Logos</a>
-                        </li>
-                        <li>
-                           <a href="">Retail Packaging</a>
-                        </li>
-                        <li>
-                           <a href="">Clearance Items</a>
-                        </li>
-                        <li>
-                           <a href="">Monthly Specials</a>
-                        </li>
-                        <li>
-                           <a href="">Printed Cutlery</a>
-                        </li>
+                           @endforeach
+                        @endif
+                       
                      </ul>
                   </div>
                </div>

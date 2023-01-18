@@ -12,16 +12,18 @@ class Allcategory extends Controller
     public function index(){
         foreach($cat as $c){
             $product_id = null;
+            $product_productname = null;
             $cat_id = $c->id;
             $data = \DB::table('products')->where('category',$cat_id)
             ->orWhere('category','like', $cat_id.'%')
             ->orWhere('category','like','%'.$cat_id.'%')
-            ->orwhere('category','like','%'.$cat_id)->get();     
-            foreach($data as $d){    
-                // echo $d->id;
-                $product_id[] =  $d->productname;    
+            ->orwhere('category','like','%'.$cat_id)->get();
+            foreach($data as $d){            
+                $product_id[] =  $d->id;
+                $product_productname[] =  $d->productname;
+                
             }
-            $catWithId[] = array($c->category => $product_id);        
+            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
         }
         return view('public.addcategory',compact('catWithId'));
     }
@@ -30,16 +32,18 @@ class Allcategory extends Controller
         $cat = category::all();
         foreach($cat as $c){
             $product_id = null;
+            $product_productname = null;
             $cat_id = $c->id;
             $data = \DB::table('products')->where('category',$cat_id)
             ->orWhere('category','like', $cat_id.'%')
             ->orWhere('category','like','%'.$cat_id.'%')
-            ->orwhere('category','like','%'.$cat_id)->get();     
-            foreach($data as $d){    
-                // echo $d->id;
-                $product_id[] =  $d->productname;    
+            ->orwhere('category','like','%'.$cat_id)->get();
+            foreach($data as $d){            
+                $product_id[] =  $d->id;
+                $product_productname[] =  $d->productname;
+                
             }
-            $catWithId[] = array($c->category => $product_id);        
+            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
         }
         return view('Public.Allcategories',compact('catWithId','cat'));
         // print_r($allcategories);
@@ -47,16 +51,18 @@ class Allcategory extends Controller
     public function getcategories(){
         foreach($cat as $c){
             $product_id = null;
+            $product_productname = null;
             $cat_id = $c->id;
             $data = \DB::table('products')->where('category',$cat_id)
             ->orWhere('category','like', $cat_id.'%')
             ->orWhere('category','like','%'.$cat_id.'%')
-            ->orwhere('category','like','%'.$cat_id)->get();     
-            foreach($data as $d){    
-                // echo $d->id;
-                $product_id[] =  $d->productname;    
+            ->orwhere('category','like','%'.$cat_id)->get();
+            foreach($data as $d){            
+                $product_id[] =  $d->id;
+                $product_productname[] =  $d->productname;
+                
             }
-            $catWithId[] = array($c->category => $product_id);        
+            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
         }
         $cat = category::all();
         // return ['cat'=>$cat];

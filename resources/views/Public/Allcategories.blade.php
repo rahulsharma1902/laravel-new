@@ -1,7 +1,7 @@
 @extends('Public.index')
 @section('allcategory')
-    
 <section class="craft-sec">
+    
         <div class="container-fluid">
             <h2>{{ Request::segment(2) }} </h2>
             <div class="row">
@@ -42,7 +42,7 @@
                                     </ul>
                                 </div>
                                 <div class="craft-btn">
-                                    <a href="">Add to Cart</a>
+                                    <a class='addtocart' data-product-id='{{$cp->id}}' href="/cart/add/{{$cp->id}}">ADD TO CART </a>
                                 </div>
 
                             </div>

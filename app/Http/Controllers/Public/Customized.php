@@ -13,6 +13,7 @@ class Customized extends Controller
 {
     //
     public function customized_add(Request $request){
+        // print_r($request->all());
         $Customized = new Customize;
         if(!empty($request['user_id'])){
             $Customized->user_id = $request['user_id'];
@@ -23,9 +24,9 @@ class Customized extends Controller
             $Customized->font_style = $request['font-style'];
             $Customized->customize_text = $request['customize_text'];
             $Customized->save();
-            $msg = 'Your Product Customized Successfully';
+            // $msg = 'Your Product Customized Successfully';
             // return Route('home',compact('msg'));
-            return redirect('/home')->with('msg');
+            return redirect('/home')->with('success','Your Product Customized Successfully');
 
         }else{
             return redirect('/my_account')->with('error','You need to Login First !');
@@ -35,25 +36,25 @@ class Customized extends Controller
     public function coustomize($id){
         $cat = category::all();
         $allproducts = products::all();
-        $coustomize_product = products::where('id', '=', $id)->get(); // Where query 
+        $coustomize_product = products::where('slug', '=', $id)->get(); // Where query 
         // print_r($id);
         $PriceType = new pricevariation;
-        $PriceType = pricevariation::where('product_id', $id)->get();
+        $PriceType = pricevariation::where('product_slug', $id)->get();
         // print_r($PriceType);
         foreach($cat as $c){
             $product_id = null;
+            $product_productname = null;
             $cat_id = $c->id;
             $data = \DB::table('products')->where('category',$cat_id)
             ->orWhere('category','like', $cat_id.'%')
             ->orWhere('category','like','%'.$cat_id.'%')
-            ->orwhere('category','like','%'.$cat_id)->get();     
-            foreach($data as $d){    
-                // echo $d->id;
-                $product_id[] =  $d->productname;    
+            ->orwhere('category','like','%'.$cat_id)->get();
+            foreach($data as $d){            
+                $product_id[] =  $d->id;
+                $product_productname[] =  $d->productname;
+                
             }
-            // $catWithId[] = array($c->category => $product_id);
-            $catWithId[] = array($c->category => $product_id);        
-            
+            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
         }
         return view('Public.Customize',compact('cat','allproducts','coustomize_product','PriceType','catWithId'));
     }
