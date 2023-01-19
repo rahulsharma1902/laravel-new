@@ -2,6 +2,9 @@
 @section('product')
 
 <section class="jumbo-sec">
+    <div class="container">
+<div id="notification" style="display: none;">
+
 @if ($errors->any())
                                     @foreach ($errors->all() as $error)
                                         <div class="alert alert-danger mt-2" id="success-alert">
@@ -26,6 +29,7 @@
                                             {{$message}}
                                         </div>
                                         @endif
+</div></div>
         <div class="container">
             <div class="row">
               <div class="col-md-6">
@@ -54,7 +58,7 @@
                                         <span class="fa fa-minus"></span>
                                     </button>
                                 </span>
-                                <input type="number" name="quant[1]" class="form-control input-number" value="1" min="1"
+                                <input type="number" name="quant[1]" class="quant form-control input-number" value="1" min="1"
                                     max="{{$product->quantity}}">
                                 <span class="input-group-plus">
                                     <button type="button" class="btn btn-number" data-type="plus" data-field="quant[1]">

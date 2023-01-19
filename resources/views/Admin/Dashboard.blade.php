@@ -63,7 +63,7 @@
                                                 <i class="zmdi zmdi-shopping-cart"></i>
                                             </div>
                                             <div class="text">
-                                                <h2 class='text-dark'>{{ count($users) ?? '' }}</h2>
+                                                <h2 class='text-dark'>{{ count($allproducts) ?? '' }}</h2>
                                                 <span>Total Products</span>
                                             </div>
                                         </div>
@@ -78,8 +78,8 @@
                                                 <i class="zmdi zmdi-calendar-note"></i>
                                             </div>
                                             <div class="text">
-                                                <h2 class='text-dark'>{{ count($allproducts) ?? '' }}</h2>
-                                                <span>Total Products</span>
+                                                <h2 class='text-dark'>{{ count($cat) ?? '' }}</h2>
+                                                <span>Total Category</span>
                                             </div>
                                         </div>
                                     </div>

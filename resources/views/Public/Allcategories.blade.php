@@ -1,7 +1,34 @@
 @extends('Public.index')
 @section('allcategory')
 <section class="craft-sec">
-    
+<div class="container">
+<div id="notification" style="display: none;">
+
+@if ($errors->any())
+                                    @foreach ($errors->all() as $error)
+                                        <div class="alert alert-danger mt-2" id="success-alert">
+                                        
+                                            <button type="button" class="close" data-dismiss="alert">x</button>
+                                        <strong>Error!</strong>{{ $error }}
+                                            
+                                        </div>
+                                        @endforeach
+                                    @endif
+                                    @if ($message = Session::get('success'))
+                                        <div class="alert alert-success  mt-2" id="success-alert">
+                                            <button type="button" class="close" data-dismiss="alert">x</button>
+                                        <strong>Success!</strong>
+                                            {{$message}}
+                                        </div>
+                                        @endif
+                                        @if ($message = Session::get('error'))
+                                        <div class="alert alert-danger mt-2" id="danger-alert">
+                                            <button type="button" class="close" data-dismiss="alert">x</button>
+                                        <strong>Error!</strong>
+                                            {{$message}}
+                                        </div>
+                                        @endif
+</div></div>
         <div class="container-fluid">
             <h2>{{ Request::segment(2) }} </h2>
             <div class="row">

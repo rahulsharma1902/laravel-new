@@ -32,8 +32,9 @@
             e.preventDefault();
             var addToCartUrl = $(this).attr('href');
             var product_id = $(this).attr('data-product-id');
-            var quantity = $('#quant').val();
+            var quantity = $('.quant').val();
             var token = $("meta[name='csrf-token']").attr("content");
+            // alert(quantity);
             $.ajax({
                url: addToCartUrl,
                type: 'GET',
@@ -89,6 +90,7 @@
                 quantity: quantity,
             },
             success: function (response) {
+        
                window.location.reload();
             }
         });
@@ -105,5 +107,11 @@
             $('#craft_id').val(id);
          });
          });
+   </script>
+   <script>
+             $("#notification").fadeIn("slow");
+               $(".dismiss").click(function(){
+                     $("#notification").fadeOut("slow");
+               });
    </script>
 </html>

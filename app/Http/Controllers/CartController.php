@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\category;
 use Session;
+use App\Models\pricevariation;
 use App\Models\products;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -27,7 +28,7 @@ class CartController extends Controller
                 $product_productname[] =  $d->productname;
                 
             }
-            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+            $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
         }
         return view('Public.Cart.index',compact('catWithId','cat','allproducts'));
     }
@@ -36,6 +37,17 @@ class CartController extends Controller
         $product = products::findOrFail($id);
         // print_r($product);
         $cart = session()->get('cart', []);
+        // print_r($cart);
+        $bundel_price = null;
+        $bundel_quantity = null;
+        if($product->type == 1){
+        $variation = pricevariation::where('product_id',$id)->get();
+        foreach($variation as $p){
+            $bundel_price[]= $p['bundel_price'];
+            $bundel_quantity[]= $p['bundel_quantity'];
+        }
+    }
+    // print_r($bundel_quantity);
         if(isset($cart[$id])) {
             $cart[$id]['quantity']++;
         }  else{ $cart[$id] = [
@@ -45,12 +57,18 @@ class CartController extends Controller
             "sku" => $product->slug,
             "price" => $product->price,
             "total_quantity" => $product->quantity,
-            "quantity" => 1
+            "quantity" => $request['quantity'] ?? 1,
+            "type" => $product->type,
+            "bundel_price" => $bundel_price,
+            "bundel_quantity" => $bundel_quantity,
+
         ];
     }
         Session::put('cart', $cart);
         // Session::set('cart', $cart);
-        // print_r(Session::get('cart'));
+        echo '<pre>';
+        print_r(Session::get('cart'));
+        echo '</pre>';
         return Session::flash('success', 'Add to cart succefully'); 
         // return Response::json(['success' => 'Add to cart succefully'], 200);
     }
@@ -63,7 +81,7 @@ class CartController extends Controller
                 session()->put('cart', $cart);
             }
             // return Response::json(['success' => 'Item removed from cart succefully'], 200);
-            return Session::flash('success', 'Item removed from cart succefully'); 
+            return Session::flash('error', 'Item removed from cart succefully'); 
 
     }
     // $cart = session()->get('cart');

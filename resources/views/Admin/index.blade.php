@@ -14,6 +14,7 @@
 
 	<!-- Fontfaces CSS-->
 	<link href="<?php echo url('Admin/css/font-face.css'); ?>" rel="stylesheet" media="all">
+	<link href="<?php echo url('Admin/css/coustam.css'); ?>" rel="stylesheet" media="all">
 	<link href="<?php echo url('Admin/vendor/font-awesome-4.7/css/font-awesome.min.css');?>" rel="stylesheet" media="all">
 	<link href="<?php echo url('Admin/vendor/font-awesome-5/css/fontawesome-all.min.css');?>" rel="stylesheet" media="all">
 	<link href="<?php echo url('Admin/vendor/mdi-font/css/material-design-iconic-font.min.css');?>" rel="stylesheet" media="all">
@@ -53,6 +54,9 @@
 		 @yield('PriceType')
 		 @yield('addPriceType')
 		 @yield('editPriceType')
+		 @yield('Banner')
+		 @yield('addBanner')
+         @yield('editBanner')
         </div>
 
 	<!-- Jquery JS-->
@@ -253,6 +257,36 @@ function checkValue(){
 		});
 });
 // });
+</script>
+<!-- script for banner status on off -->
+<script>
+	$(document).ready(function() {
+		$('.status').click(function(){
+			var status = $(this).val();
+			var token = $("meta[name='csrf-token']").attr("content");
+			var id = $(this).data("id");
+			if($(this).prop('checked')){
+				$(this).val(0);
+			}else{
+				$(this).val(1);
+            }
+			alert(id);
+			$.ajax(
+			{
+				url: "/admin/banner/status",
+				type: 'GET',
+				dataType:'json',
+				data: {
+					"id": id,
+					"status": status,
+					"_token": token,
+				},
+				success: function (data){
+					location.reload();
+				}
+			});
+		});
+	});
 </script>
 </body>
 

@@ -28,7 +28,7 @@ class Allproducts extends Controller
                 $product_productname[] =  $d->productname;
                 
             }
-            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+        $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
         }
         return view('Public.home',compact('allproducts','cat','product','catWithId'));
         // print_r($allproducts);        
@@ -52,7 +52,7 @@ class Allproducts extends Controller
                 $product_productname[] =  $d->productname;
                 
             }
-            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+        $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
         }
         // print_r($product->category);
         $relatedProducts = \DB::table('products')->where('category',$product->category)->orWhere('category','like', $cat_id.'%')
@@ -86,7 +86,7 @@ class Allproducts extends Controller
                 $product_productname[] =  $d->productname;
                 
             }
-            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+        $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
         }
         $id = Category::where('category', $id)->get('id');
         foreach($id as $c_id){

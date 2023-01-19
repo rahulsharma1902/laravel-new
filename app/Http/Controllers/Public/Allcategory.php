@@ -23,7 +23,7 @@ class Allcategory extends Controller
                 $product_productname[] =  $d->productname;
                 
             }
-            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+        $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
         }
         return view('public.addcategory',compact('catWithId'));
     }
@@ -43,7 +43,7 @@ class Allcategory extends Controller
                 $product_productname[] =  $d->productname;
                 
             }
-            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+        $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
         }
         return view('Public.Allcategories',compact('catWithId','cat'));
         // print_r($allcategories);
@@ -62,7 +62,7 @@ class Allcategory extends Controller
                 $product_productname[] =  $d->productname;
                 
             }
-            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+        $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
         }
         $cat = category::all();
         // return ['cat'=>$cat];

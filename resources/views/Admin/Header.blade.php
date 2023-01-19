@@ -55,6 +55,10 @@
                             <a href="/admin/products">
                                 <i class="fas fa-table"></i>Products</a>
                         </li>
+                        <li class="{{ (request()->segment(2) == 'banner') ? 'active' : '' }}">
+                            <a href="/admin/banner">
+                            <i class="fa fa-picture-o" aria-hidden="true"></i>Banners</a>   
+                        </li>
                     </ul>
                 </nav>
             </div>

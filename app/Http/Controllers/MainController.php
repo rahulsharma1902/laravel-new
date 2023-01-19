@@ -9,12 +9,14 @@ use Session;
 use App\Models\category;
 use App\Models\products;
 use App\Models\product_category;
+use App\Models\Banner;
 use Illuminate\Support\Facades\Auth;
 class MainController extends Controller
 {
     public function main(){
         $cat = category::all();
         $allproducts = products::all();
+        $banners = Banner::where('status', 1)->get();
         foreach($cat as $c){
             $product_id = null;
             $product_productname = null;
@@ -28,9 +30,9 @@ class MainController extends Controller
                 $product_productname[] =  $d->productname;
                 
             }
-            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+            $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
         }
-    return view('/',compact('cat','allproducts','catWithId'));
+    return view('/',compact('cat','allproducts','catWithId','banners'));
     }
 
     public function register(Request $request) {
@@ -68,7 +70,7 @@ public function login(Request $request){
                         return redirect('/home')->with('success', 'Welcome '.$user->fname.' '.$user->lname);
                     }
         }else{
-            return redirect('/home')->with('error', 'Incorrect email or password');
+            return redirect('/my_account')->with('error', 'Incorrect email or password');
         }
 }
 
@@ -82,8 +84,9 @@ public function login(Request $request){
 public function home(){
     $cat = category::all();
     $allproducts = products::all();
+    $banners = Banner::where('status', 1)->get();
     $Cproduct = products::where('type', '=', 1)->get(); // Where query 
-    $newProducts = products::orderBy('created_at','desc')->get();
+    $newProducts = products::orderBy('created_at','desc')->take(10)->get();
     foreach($cat as $c){
         $product_id = null;
         $product_productname = null;
@@ -97,9 +100,9 @@ public function home(){
             $product_productname[] =  $d->productname;
             
         }
-        $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+        $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
     }
-    return view('Public.home',compact('cat','allproducts','Cproduct','newProducts','catWithId'));
+    return view('Public.home',compact('cat','allproducts','Cproduct','newProducts','catWithId','banners'));
 }
 public function my_account(){
     $cat = category::all();
@@ -118,7 +121,7 @@ public function my_account(){
             $product_productname[] =  $d->productname;
             
         }
-        $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+        $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
     }
     return view('my_account',compact('cat','allproducts','Cproduct','catWithId'));
 }
@@ -147,10 +150,10 @@ public function my_account(){
 //             // echo $d->slug;
 //             $product_id[] =  $d->slug;
 //             $product_productname[] =  $d->productname;
-            
+
 //         }
 //         // dd($product_id);
-//         $catWithId[] = array($c->category => array_combine($product_id,$product_productname));        
+//         $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
 //         // echo "<br>";
         
 //     }
@@ -174,12 +177,35 @@ public function my_account(){
 //     }
 
 public function trycode(){
-    echo 'product_category';
-    // $pc = products::find(7)->productss;
-    $pc = category::with('parentcategory')->get();
-echo'<pre>';
-    print_r($pc);
-    echo '</pre>';
+    $products = product_category::with('products')->get();
+    foreach($products as $p){
+        echo $p->products['productname'];
+        echo '<br>';
+    }
+    echo '<br>';
+    $category = product_category::with('categories')->get();
+    foreach($category as $c ){
+        echo $c->categories['category'];
+        echo '<br>';
+    }
+    dd($products);
+//     // $pc = products::find(7)->productss;
+//     $pc = category::with('parentcategory')->get();
+// echo'<pre>';
+//     // print_r($pc);
+//     echo '</pre>';
+//     foreach($pc as $k => $v){
+//         echo $k;
+//         echo $v['parentcategory'];
+//         // echo '=';
+//         echo '<br>';
+//             echo $v;
+//         echo '<br>';
+//     }
+    // $article=category::with("parentcategory")->first();
+    // dump($article);
+
+    // dump($article->id);
 }
 
 }

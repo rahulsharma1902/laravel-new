@@ -53,7 +53,7 @@
                   
                         @foreach ($allproducts as $all)
                         <li>
-                           <a href="/products/{{$all->id}}">{{$all->productname}}</a>
+                           <a href="/products/{{$all->slug}}">{{$all->productname}}</a>
                         </li>
                         @endforeach
                 

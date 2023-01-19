@@ -9,11 +9,14 @@ use App\Models\category;
 use App\Models\Customize;
 use App\Models\pricevariation;
 use Redirect;
+use Session;
+
 class Customized extends Controller
 {
     //
     public function customized_add(Request $request){
         // print_r($request->all());
+        if($request['craft_id']!=null){
         $Customized = new Customize;
         if(!empty($request['user_id'])){
             $Customized->user_id = $request['user_id'];
@@ -31,7 +34,13 @@ class Customized extends Controller
         }else{
             return redirect('/my_account')->with('error','You need to Login First !');
                 }
+            }else{
+                // return Session::flash('error', 'Select a Graphic & Clipart'); 
+                // print_r($request->all());
+                $slug = $request['slug'];
+                return redirect('/customize/'.$slug)->with('error','Select a Graphic & Clipart');
 
+            }
     }
     public function coustomize($id){
         $cat = category::all();
@@ -54,7 +63,7 @@ class Customized extends Controller
                 $product_productname[] =  $d->productname;
                 
             }
-            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+            $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
         }
         return view('Public.Customize',compact('cat','allproducts','coustomize_product','PriceType','catWithId'));
     }

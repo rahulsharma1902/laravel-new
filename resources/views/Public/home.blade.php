@@ -1,9 +1,9 @@
 @extends('Public.index')
 
 @section('banner')
-   <section class="banner-sec">
-
-   @if ($errors->any())
+<div class="container">
+   <div id="notification" style="display: none;">
+      @if ($errors->any())
                                     @foreach ($errors->all() as $error)
                                         <div class="alert alert-danger mt-2" id="success-alert">
                                         
@@ -27,24 +27,25 @@
                                             {{$message}}
                                         </div>
                                         @endif
+   </div></div>
+    <!-- This is Banner section of the project -->
+   <section class="banner-sec">
       <div class="testi-slid">
-         <div class="auto-des">
+         @if ($banners)
+            @foreach ($banners as $banner )
+            <div class="auto-des">
             <div class="banner-test-slide">
-               <img src="images/banner-slide1.png" class="img-fluid">
+               <img src="products_images/{{$banner->image_url}}" class="img-fluid" alt='{{$banner->sku}}'>
             </div>
          </div>
-         <div class="auto-des">
-            <div class="banner-test-slide">
-               <img src="images/banner-slide1.png" class="img-fluid">
-            </div>
-         </div>
-         <div class="auto-des">
-            <div class="banner-test-slide">
-               <img src="images/banner-slide1.png" class="img-fluid">
-            </div>
-         </div>
+            @endforeach
+         @endif
+
+
       </div>
    </section>
+         <!-- end of banner section -->
+
  @endsection
    @section('banner-products')
    <section class="banner-products">

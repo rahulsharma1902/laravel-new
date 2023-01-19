@@ -3,9 +3,12 @@
     <section class="account-sec">
         <div class="container ">
 
-                            @if ($errors->any())
+        <div class="container">
+<div id="notification" style="display: none;">
+
+@if ($errors->any())
                                     @foreach ($errors->all() as $error)
-                                        <div class="alert alert-danger mt-4" id="success-alert">
+                                        <div class="alert alert-danger mt-2" id="success-alert">
                                         
                                             <button type="button" class="close" data-dismiss="alert">x</button>
                                         <strong>Error!</strong>{{ $error }}
@@ -14,19 +17,20 @@
                                         @endforeach
                                     @endif
                                     @if ($message = Session::get('success'))
-                                        <div class="alert alert-success mt-4" id="success-alert">
+                                        <div class="alert alert-success  mt-2" id="success-alert">
                                             <button type="button" class="close" data-dismiss="alert">x</button>
                                         <strong>Success!</strong>
                                             {{$message}}
                                         </div>
                                         @endif
                                         @if ($message = Session::get('error'))
-                                        <div class="alert alert-danger mt-4" id="danger-alert">
+                                        <div class="alert alert-danger mt-2" id="danger-alert">
                                             <button type="button" class="close" data-dismiss="alert">x</button>
                                         <strong>Error!</strong>
                                             {{$message}}
                                         </div>
                                         @endif
+</div></div>
             <div class="contact-login-form">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">

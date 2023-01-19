@@ -3,20 +3,28 @@
 <section class="h-100" style="background-color: #eee;">
   <div class="container h-100 py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-10">
+      <div class="container">
+          <div id="notification" style="display: none;">
              @if ($message = Session::get('success'))
-                                        <div class="alert alert-success" id="success-alert">
+                                        <div class="dismiss alert alert-success" id="success-alert">
                                             <button type="button" class="close" data-dismiss="alert">x</button>
                                         <strong>Success!</strong>
                                             {{$message}}
                                         </div>
                                         @endif
+                                        <!-- error -->
+            @if ($message = Session::get('error'))
+                                        <div class="dismiss alert alert-danger" id="danger-alert">
+                                            <button type="button" class="close" data-dismiss="alert">x</button>
+                                        <strong>!</strong>
+                                            {{$message}}
+                                        </div>
+                                        @endif
+          </div>                       
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
         </div>
-        @if(Session::has('message'))
-        <p class="alert alert-info">{{ Session::get('message') }}</p>
-        @endif
+
         <div class="card rounded-3 mb-4">
           <div class="card-body p-4">
           @if(session('cart'))

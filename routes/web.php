@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UploadPricetype;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SearchProduct;
+use App\Http\Controllers\Admin\UploadBanner;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,6 +65,14 @@ Route::get('/admin/products/customize/{id}',[UploadProduct::class, 'customizepri
 Route::POST('/customize/pricequantity/',[UploadProduct::class, 'Updatepricequantity'])->middleware('adminAccess');
 Route::get('/admin/products/updatepricetype/',[UploadProduct::class, 'updatepricetype'])->middleware('adminAccess');
 Route::get('/admin/product/savePricetype',[UploadProduct::class, 'savePricetype'])->middleware('adminAccess');
+
+Route::get('/admin/banner',[UploadBanner::class,'index'])->middleware('adminAccess');
+Route::get('/admin/banner/add',[UploadBanner::class,'add'])->middleware('adminAccess');
+Route::post('/addbanner',[UploadBanner::class,'save'])->middleware('adminAccess');
+Route::get('/admin/banner/edit/{id}',[UploadBanner::class, 'edit'])->middleware('adminAccess');
+Route::post('/updatebanner/{id}',[UploadBanner::class,'update'])->middleware('adminAccess');
+Route::get('delete_banner/{id}',[UploadBanner::class, 'delete'])->middleware('adminAccess');
+Route::get('/admin/banner/status',[UploadBanner::class, 'status'])->middleware('adminAccess');
 
 // end of admin routes
 Route::get('/products',[Allproducts::class,'getallproducts']);

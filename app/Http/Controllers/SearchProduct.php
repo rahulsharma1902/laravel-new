@@ -27,7 +27,7 @@ class SearchProduct extends Controller
                 $product_productname[] =  $d->productname;
                 
             }
-            $catWithId[] = array($c->category => array_combine($product_id,$product_productname));                
+            $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
         }
         // print_r($request['searchdata']);
         $searchproduct = \DB::table('products')->where('productname',$request['searchdata'])

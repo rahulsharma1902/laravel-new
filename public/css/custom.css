@@ -1088,3 +1088,35 @@ box-shadow: 0px 0px 5px 2px rgb(0 0 0 / 20%);
         min-height: auto;
     }
 }
+/* alerts pop up */
+#notification {
+    width: 75rem;
+    border-radius: 20px;
+    margin-top: 7px;
+    position:fixed;
+    top:0px;
+    /* width:100%; */
+    z-index:105;
+    text-align:center;
+    font-weight:normal;
+    font-size:14px;
+    font-weight:bold;
+    color:white;
+    background-color:none;
+    padding:5px;
+}
+#notification span.dismiss {
+    color: black;
+    height: 25px;
+    width: 10px;
+    /* border:2px solid #FFF; */
+    padding:0 5px;
+    cursor:pointer;
+    float:right;
+    margin-right:10px;
+}
+#notification a {
+    color:white;
+    text-decoration:none;
+    font-weight:bold
+}
