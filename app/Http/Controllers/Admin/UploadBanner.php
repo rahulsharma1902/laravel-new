@@ -99,7 +99,8 @@ public function delete($id){
         if($banner){
             $banner->status =$request->get('status');
             $banner->save();
-            return Session::flash('success', 'Banner status updated successfully');
+            // return Session::flash('success', 'Banner status updated successfully');
+            return redirect('/admin/banner')->with('success', 'Banner updated successfully');
         }
     }
 

@@ -177,18 +177,38 @@ public function my_account(){
 //     }
 
 public function trycode(){
-    $products = product_category::with('products')->get();
-    foreach($products as $p){
-        echo $p->products['productname'];
-        echo '<br>';
-    }
-    echo '<br>';
-    $category = product_category::with('categories')->get();
-    foreach($category as $c ){
-        echo $c->categories['category'];
-        echo '<br>';
-    }
-    dd($products);
+    // $category_id = 7;
+    //     $data = \DB::select('SELECT *
+    //      FROM `products` INNER JOIN `product_categories` 
+    //      ON `product_categories`.`category_id` = ? 
+    //      WHERE `product_categories`.`product_id` = `products`.`id`', [$category_id]);
+    //     print_r($data);
+
+    // $data = category::with('children')->whereNull('parent_id')->orderBy('category', 'asc')->get();
+    // print_r($data);
+    // $data = category::with('parentcategory')->get();
+    // foreach($data as $p=>$c){
+    //     echo $p['category'];
+    //     foreach($c as $k=>$v){
+    //         echo $v['category'];
+    //         echo '<br>';
+    //     }
+    // }
+    // dd($data);
+    // $products = product_category::with('product')->get();
+    // dd($products);
+    // $products = product_category::with('products')->get();
+    // foreach($products as $p){
+    //     echo $p->products['productname'];
+    //     echo '<br>';
+    // }
+    // echo '<br>';
+    // $category = product_category::with('categories')->get();
+    // foreach($category as $c ){
+    //     echo $c->categories['category'];
+    //     echo '<br>';
+    // }
+    // dd($products);
 //     // $pc = products::find(7)->productss;
 //     $pc = category::with('parentcategory')->get();
 // echo'<pre>';

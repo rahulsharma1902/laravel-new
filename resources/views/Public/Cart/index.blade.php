@@ -28,8 +28,9 @@
         <div class="card rounded-3 mb-4">
           <div class="card-body p-4">
           @if(session('cart'))
+        
                         @foreach(session('cart') as $id => $details)
-                        
+
             <div class="row d-flex justify-content-between align-items-center">
               <div class="col-md-2 col-lg-2 col-xl-2">
                 <img
@@ -55,7 +56,17 @@
                 </button>
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$<?php echo $details['price']*$details['quantity'] ?>.00</h5>
+                <!-- <h5 class="mb-0">$<?php echo $details['price']*$details['quantity'] ?>.00</h5> -->
+                <h5 class="mb-0">$<?php if($details['type'] == 1){
+                  $quentity = $details['quantity'];
+                      if(array_key_exists($quentity,$details['quantity_price'])) {
+                        echo $details['quantity_price'][$quentity];
+                    }else{
+                      echo $details['price']*$details['quantity'];
+                    }
+                }else{
+                  echo $details['price']*$details['quantity'];
+                } ?>.00</h5>
               </div>
               <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                 <a class='remove_item'href="/cart/remove/" data-id="{{$id}}" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>

@@ -62,9 +62,9 @@
                                                 <td>{{$banners->slug}}</td>
                                                 <td>{{$banners->sku}}</td>
                                                 <td><label class="switch switch-text switch-success switch-pill">
-                                                    <input type="checkbox" value='{{$banners->status}}' data-id="{{$banners->id}}" class="status switch-input" checked="">
-                                                    <span data-on="On" data-off="Off" class="switch-label"></span>
-                                                    <span class="switch-handle"></span>
+                                                    <input type="checkbox" value='{{$banners->status}}' data-id="{{$banners->id}}" class="status switch-input" checked="unchecked">
+                                                    <span data-on="on" data-off="off" class="text-dark switch-label"></span>
+                                                    <span class="switch-handle text-dark"></span>
                                                     </label>
                                                 </td>
                                                 <td>

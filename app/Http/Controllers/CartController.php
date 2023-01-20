@@ -59,16 +59,27 @@ class CartController extends Controller
             "total_quantity" => $product->quantity,
             "quantity" => $request['quantity'] ?? 1,
             "type" => $product->type,
-            "bundel_price" => $bundel_price,
-            "bundel_quantity" => $bundel_quantity,
+            "quantity_price" => array_combine($bundel_quantity ?? array(),$bundel_price ?? array()),
+            "bundel_price"  => $bundel_price,
+            "bundel_quantity"  => $bundel_quantity,
 
         ];
     }
+    // echo '<hr>';
+    // $quantity_price = array_combine($bundel_quantity ?? array(),$bundel_price ?? array());
+    // $quant = 20;
+    // print_r(array_search(min($quant), $quantity_price));
+
+    // if(array_key_exists($quant,$quantity_price)) {
+    //     print_r($quantity_price[$quant]);
+    // }else{
+    //     echo 'No response';
+    // }
         Session::put('cart', $cart);
         // Session::set('cart', $cart);
-        echo '<pre>';
-        print_r(Session::get('cart'));
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r(Session::get('cart'));
+        // echo '</pre>';
         return Session::flash('success', 'Add to cart succefully'); 
         // return Response::json(['success' => 'Add to cart succefully'], 200);
     }

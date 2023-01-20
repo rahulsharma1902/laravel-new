@@ -259,18 +259,23 @@ function checkValue(){
 // });
 </script>
 <!-- script for banner status on off -->
+<script type="text/javascript">
+    window.onload = function() {
+    document.getElementById(".status").checked = false;
+    }
+</script>
 <script>
 	$(document).ready(function() {
 		$('.status').click(function(){
 			var status = $(this).val();
 			var token = $("meta[name='csrf-token']").attr("content");
 			var id = $(this).data("id");
-			if($(this).prop('checked')){
-				$(this).val(0);
-			}else{
+			if($(this).prop('checked') == false){
 				$(this).val(1);
+			}else{
+				$(this).val(0);
             }
-			alert(id);
+			alert(status);
 			$.ajax(
 			{
 				url: "/admin/banner/status",
@@ -282,7 +287,7 @@ function checkValue(){
 					"_token": token,
 				},
 				success: function (data){
-					location.reload();
+					window.location.reload();
 				}
 			});
 		});
