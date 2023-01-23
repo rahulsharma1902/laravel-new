@@ -61,7 +61,7 @@
                                         <input type="password" name="password" class="form-control cont" placeholder="Password" required>
                                     </div>
                                 </div>
-                                <p>Forgot Your Password?</p>
+                               <a href="/forget_password"><p>Forgot Your Password?</p></a> 
                                 <div class="form-btn">
                                     <!-- <a href="">LOGIN</a> -->
                                     <button class="btna" type="submit">Login</button>

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\UploadPricetype;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SearchProduct;
 use App\Http\Controllers\Admin\UploadBanner;
+use App\Http\Controllers\emailOTP;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,7 @@ Route::get('/',[MainController::class, 'home']);
 Route::post('/register',[MainController::class, 'register']);
 Route::post('/login',[MainController::class, 'login']);
 Route::get('/logout',[MainController::class, 'logout']);
+Route::get('/forget_password',[MainController::class, 'forget_password']);
 // admin routes
 Route::get('/admin/dashboard',[AdminController::class, 'dashboard'])->middleware('adminAccess');
 Route::view('/admin/dashboard/uploadproduct','Admin.addProducts')->middleware('adminAccess');
@@ -97,3 +99,22 @@ Route::get('/cart/update-cart/', [CartController::class, 'update'])->name('updat
 
 // search route
 Route::POST('/searchproducts',[SearchProduct::class, 'index']);
+
+// email send route
+// Route::get('send-mail', function () {
+   
+//     $details = [
+//         'title' => 'Mail from ItSolutionStuff.com',
+//         'body' => 'This is for testing email using smtp'
+//     ];
+   
+//     \Mail::to('your_receiver_email@gmail.com')->send(new \App\Mail\MyTestMail($details));
+   
+//     dd("Email is Sent.");
+// });
+
+Route::get('/send-email',[emailOTP::class,'index']);
+Route::get('/enter-otp',[emailOTP::class,'enterOTP']);
+Route::get('/verify-otp',[emailOTP::class,'verifyOTP']);
+Route::get('/new-password/{OTP}',[emailOTP::class,'newPassword']);
+Route::get('/genratePassword',[emailOTP::class,'genratePassword']);

@@ -11,6 +11,8 @@ use App\Models\products;
 use App\Models\product_category;
 use App\Models\Banner;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon; // use for compare time stamps
+
 class MainController extends Controller
 {
     public function main(){
@@ -44,7 +46,7 @@ class MainController extends Controller
         $password = bcrypt($request['password']);
 //# 
         $user = new User();
-        $user->email = $request['email'];;
+        $user->email = $request['email'];
         $user->fname = $request['firstname'];
         $user->lname = $request['lastname'];
         $user->status = $status;
@@ -126,6 +128,26 @@ public function my_account(){
     return view('my_account',compact('cat','allproducts','Cproduct','catWithId'));
 }
 
+public function forget_password(){
+    $cat = category::all();
+    $allproducts = products::all();
+    foreach($cat as $c){
+        $product_id = null;
+        $product_productname = null;
+        $cat_id = $c->id;
+        $data = \DB::table('products')->where('category',$cat_id)
+        ->orWhere('category','like', $cat_id.'%')
+        ->orWhere('category','like','%'.$cat_id.'%')
+        ->orwhere('category','like','%'.$cat_id)->get();
+        foreach($data as $d){            
+            $product_id[] =  $d->slug;
+            $product_productname[] =  $d->productname;
+            
+        }
+        $catWithId[] = array($c->category => array_combine($product_id ?? array(),$product_productname ?? array()));        
+    }
+return view('auth.ForgetPassword.index',compact('cat','allproducts','catWithId'));
+}
 
 // public function trycode(){
 //     $cat = category::all();
@@ -175,8 +197,8 @@ public function my_account(){
 //     dd($catWithId);
 //     // die();
 //     }
-
 public function trycode(){
+    print_r(Carbon::now());
     // $category_id = 7;
     //     $data = \DB::select('SELECT *
     //      FROM `products` INNER JOIN `product_categories` 
