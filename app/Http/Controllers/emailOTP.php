@@ -23,7 +23,7 @@ class emailOTP extends Controller
         $OTP = random_int(1000, 9999);
         $user = User::where('email', $validated['email'])->first();
         $user->remember_token = $OTP;
-        $user->updated_at = Carbon::now()->addSeconds(10);
+        $user->updated_at = Carbon::now(); //->addSeconds(10);
         $user->save();
         // print_r($user);
         // print_r($OTP);

@@ -13,6 +13,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\SearchProduct;
 use App\Http\Controllers\Admin\UploadBanner;
 use App\Http\Controllers\emailOTP;
+use App\Http\Controllers\CheckoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,7 +77,7 @@ Route::post('/updatebanner/{id}',[UploadBanner::class,'update'])->middleware('ad
 Route::get('delete_banner/{id}',[UploadBanner::class, 'delete'])->middleware('adminAccess');
 Route::get('/admin/banner/status',[UploadBanner::class, 'status'])->middleware('adminAccess');
 
-// end of admin routes
+// End of admin routes
 Route::get('/products',[Allproducts::class,'getallproducts']);
 Route::get('/products/{id}',[Allproducts::class,'getsingleproduct']);
 
@@ -90,31 +91,23 @@ Route::POST('/customized',[Customized::class, 'customized_add']);
 Route::get('/public/header/products',[MainController::class, 'headerProducts']);
 
 
-// cart route
+// Cart route
 Route::get('/cart',[CartController::class, 'index']);
 Route::get('/cart/add/{id}',[CartController::class, 'add']);
 Route::get('/cart/remove/',[CartController::class,'remove']);
 Route::get('/cart/update-cart/', [CartController::class, 'update'])->name('update_cart');
 
 
-// search route
+// Search route
 Route::POST('/searchproducts',[SearchProduct::class, 'index']);
 
-// email send route
-// Route::get('send-mail', function () {
-   
-//     $details = [
-//         'title' => 'Mail from ItSolutionStuff.com',
-//         'body' => 'This is for testing email using smtp'
-//     ];
-   
-//     \Mail::to('your_receiver_email@gmail.com')->send(new \App\Mail\MyTestMail($details));
-   
-//     dd("Email is Sent.");
-// });
-
+// E-Mail OTP route
 Route::get('/send-email',[emailOTP::class,'index']);
 Route::get('/enter-otp',[emailOTP::class,'enterOTP']);
 Route::get('/verify-otp',[emailOTP::class,'verifyOTP']);
 Route::get('/new-password/{OTP}',[emailOTP::class,'newPassword']);
 Route::get('/genratePassword',[emailOTP::class,'genratePassword']);
+
+// Check out route
+Route::get('/checkout',[CheckoutController::class, 'index']);
+Route::POST('/checkoutpayment',[CheckoutController::class, 'checkoutpayment']);

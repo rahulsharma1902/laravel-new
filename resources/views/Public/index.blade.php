@@ -19,6 +19,7 @@
    @yield('newproducts')
    @yield('my_account')
    @yield('cart')
+   @yield('Checkout')
    @yield('SearchProduct')
    @yield('forgetPassword')
    @yield('enterOTP')
@@ -116,5 +117,14 @@
                $(".dismiss").click(function(){
                      $("#notification").fadeOut("slow");
                });
+   </script>
+   <!-- check out page COD and Credid cart  -->
+   <script>
+      $(".control-group").hide();
+      $("input[name=payment]").change(function() {
+         $(".control-group").hide();
+         $("#" + $(this).data("for")).show();
+      });
+      $("input[name=payment]:checked").trigger('change')
    </script>
 </html>

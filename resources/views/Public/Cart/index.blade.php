@@ -79,7 +79,7 @@
         </div>
         <div class="card">
           <div class="card-body">
-            <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+           <a href="/checkout"> <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button></a>
           </div>
         </div>
 
